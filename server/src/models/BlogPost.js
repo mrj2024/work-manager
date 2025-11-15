@@ -13,6 +13,7 @@ const blogPostSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-blogPostSchema.index({ title: 'text', body: 'text', tags: 1 });
+blogPostSchema.index({ title: 'text', body: 'text' });
+blogPostSchema.index({ tags: 1 });
 
 export default mongoose.model('BlogPost', blogPostSchema);

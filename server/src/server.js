@@ -17,11 +17,6 @@ import { notFound, errorHandler } from './middleware/errorHandler.js';
 const app = express();
 const PORT = process.env.PORT || 5000;
 const uploadDir = process.env.UPLOAD_DIR || path.resolve('server/uploads');
-const normalizeOrigin = (origin = '') => origin.replace(/\/$/, '').trim();
-const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
-  .split(',')
-  .map(normalizeOrigin)
-  .filter(Boolean);
 
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
@@ -29,13 +24,7 @@ if (!fs.existsSync(uploadDir)) {
 
 app.use(
   cors({
-    origin: (origin, cb) => {
-      if (!origin) return cb(null, true);
-      if (allowedOrigins.includes(normalizeOrigin(origin))) {
-        return cb(null, true);
-      }
-      return cb(new Error('Not allowed by CORS'));
-    },
+    origin: process.env.CLIENT_URL || 'http://localhost:5173',
     credentials: true
   })
 );

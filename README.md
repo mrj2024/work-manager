@@ -45,7 +45,13 @@ project/
    ```
 2. **Configure environment variables**
    - Copy `server/.env.example` to `server/.env`
-   - Provide `MONGO_URI`, `JWT_SECRET`, `JWT_REFRESH_SECRET`, and `CLIENT_URL`
+   - Set the API secrets + URLs:  
+     `MONGO_URI=mongodb+srv://sytemAdm1:yvNnMOPTt1LB5IrG@cluster0.xfskkkr.mongodb.net/?appName=Cluster0`  
+     `JWT_SECRET=ec94be2d7cf70eef1e7ac82791991f8b149708610c189a58e887a2db0f451fe16258a89c3e979d12e33e36a267319a0ea631547b295e61e9ba0aad55892e567c`  
+     `JWT_REFRESH_SECRET=8aff0d7149a701d7218a0280cb259b4273c1e7575bed1b388e4b4f5e8762eb41eac861a46f36a9e0b5bd3b078313f22e81dd9d8c01d669bb76d7c061017f0c96`  
+     `CLIENT_URL=https://work-manager-hzw5hwrti-jenometvs-projects.vercel.app,https://work-manager-brown.vercel.app,http://localhost:5173`  
+     `UPLOAD_DIR=/opt/render/project/src/server/uploads`
+   - Create `client/.env` with `VITE_API_URL=https://work-manager-aipl.onrender.com/api`
 3. **Start MongoDB locally** (or point to Atlas/Render cluster)
 
 ### Development Commands
@@ -79,7 +85,7 @@ The Vite dev server proxies `/api/*` to the Express API.
 4. Set environment variables in Render dashboard (`PORT`, `MONGO_URI`, `JWT_SECRET`, `JWT_REFRESH_SECRET`, `CLIENT_URL`, `UPLOAD_DIR`).
 5. Enable persistent storage if you need to keep uploaded files on disk or switch to S3 for production.
 
-Update the Vercel frontend to point to the Render API base URL (e.g., set `VITE_API_URL=https://your-api.onrender.com` and update `api.js`).
+Update the Vercel frontend to point to the Render API base URL (e.g., `VITE_API_URL=https://work-manager-aipl.onrender.com/api`) and redeploy.
 
 ### Example API Calls
 
